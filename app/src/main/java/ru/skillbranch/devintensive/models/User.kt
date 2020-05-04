@@ -21,9 +21,6 @@ data class User(
         avatar = null
     )
 
-    private constructor(builder: Builder) : this("0", builder.firstName, builder.lastName, builder.avatar, builder.rating,builder.respect, builder.lastVisit, builder.isOnline){
-    }
-
     companion object Factory{
         private var lastId : Int = -1
         fun makeUser(fullName: String?) : User{
