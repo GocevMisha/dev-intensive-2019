@@ -27,11 +27,11 @@ fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND) : Date{
 fun Date.humanizeDiff(date: Date = Date()): String{
     println(date.time - this.time)
     return when(val  period = date.time - this.time){
-        in -360* DAY.. -26* HOUR -> "через ${TimeUnits.DAY.plural(((-period/ DAY)+1).toInt())}"
+        in -360* DAY.. -26* HOUR -> "через ${TimeUnits.DAY.plural(((-period/ DAY)).toInt())}"
         in -22* HOUR downTo -26* HOUR -> "через день"
-        in -75* MINUTE downTo -22* HOUR -> "через ${TimeUnits.HOUR.plural(((-period/ HOUR)+1).toInt())}"
+        in -75* MINUTE downTo -22* HOUR -> "через ${TimeUnits.HOUR.plural(((-period/ HOUR)).toInt())}"
         in -45* MINUTE downTo -75* MINUTE ->  "через час"
-        in -75* SECOND downTo -45* MINUTE -> "через ${TimeUnits.MINUTE.plural(((-period/ MINUTE)+1).toInt())}"
+        in -75* SECOND downTo -45* MINUTE -> "через ${TimeUnits.MINUTE.plural(((-period/ MINUTE)).toInt())}"
         in -45*SECOND downTo -75*SECOND -> "через минуту"
         in -1*SECOND downTo -45*SECOND -> "через несколько секунд"
         in -1* SECOND..1* SECOND -> "только что"

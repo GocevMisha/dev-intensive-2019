@@ -30,9 +30,9 @@ data class User(
             return User(id = "$lastId", firstName = firstName, lastName =  lastName)
         }
     }
+
      class Builder {
-         private var id : String? = null
-         private var lastId : Int = -1
+         private var id : String = ""
          var firstName : String? = null
          var lastName : String? = null
          var avatar : String? = null
@@ -41,8 +41,7 @@ data class User(
          var lastVisit : Date? = Date()
          var isOnline : Boolean = false
 
-         fun id(value: String) = apply { id = value
-                                            lastId = value.toInt()}
+         fun id(value: String) = apply { id = value}
          fun firstName(value: String) = apply { firstName = value }
          fun lastName(value: String) = apply { lastName = value }
          fun avatar(value: String) = apply { avatar = value }
@@ -52,11 +51,8 @@ data class User(
          fun isOnline(value: Boolean) = apply { isOnline = value }
 
          fun build() : User{
-             if(id!=null) {
-                 lastId++
-                 id = "$lastId"
-             }
-             return User(id = id!!, firstName = firstName, lastName = lastName, avatar = avatar,rating = rating,
+
+             return User(id = id, firstName = firstName, lastName = lastName, avatar = avatar,rating = rating,
                  respect = respect, lastVisit = lastVisit, isOnline = isOnline )
          }
     }
