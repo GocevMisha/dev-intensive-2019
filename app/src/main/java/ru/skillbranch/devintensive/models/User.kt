@@ -21,6 +21,9 @@ data class User(
         avatar = null
     )
 
+    private constructor(builder: Builder) : this("0", builder.firstName, builder.lastName, builder.avatar, builder.rating,builder.respect, builder.lastVisit, builder.isOnline){
+    }
+
     companion object Factory{
         private var lastId : Int = -1
         fun makeUser(fullName: String?) : User{
@@ -29,6 +32,28 @@ data class User(
             val (firstName, lastName) = Utils.parseFullName(fullName)
             return User(id = "$lastId", firstName = firstName, lastName =  lastName)
         }
+    }
+     class Builder {
+         var firstName : String? = null
+         var lastName : String? = null
+         var avatar : String? = null
+         var rating : Int = 0
+         var respect : Int = 0
+         var lastVisit : Date? = Date()
+         var isOnline : Boolean = false
+
+         fun firstName(value: String) = apply { firstName = value }
+         fun lastName(value: String) = apply { lastName = value }
+         fun avatar(value: String) = apply { avatar = value }
+         fun rating(value: Int) = apply { rating = value }
+         fun respect(value: Int) = apply { respect = value }
+         fun lastVisit(value: Date) = apply { lastVisit = value }
+         fun isOnline(value: Boolean) = apply { isOnline = value }
+
+         fun build() : User{
+             return makeUser("").copy(firstName = firstName, lastName = lastName, avatar = avatar,rating = rating,
+                 respect = respect, lastVisit = lastVisit, isOnline = isOnline )
+         }
     }
 
 }

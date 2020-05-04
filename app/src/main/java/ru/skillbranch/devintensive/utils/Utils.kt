@@ -23,15 +23,14 @@ object Utils {
     fun toInitials(firstName: String?, lastName: String?) : String ? {
         val first = firstName?.trim()?.getOrNull(0)?.toUpperCase()
         val second = lastName?.trim()?.getOrNull(0)?.toUpperCase()
-        var result = "null"
-        if(first != null) {
-            result = ""
-            result += first}
+        var result: String? = null
+        if(first != null)
+            result = first.toString()
         if(second != null ) {
-            if( result == "null") result = ""
-            result += second
+            if( result == null)
+                result = second.toString()
+            else result +=second
         }
-
         return result
     }
 
