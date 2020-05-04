@@ -30,7 +30,7 @@ data class User(
             return User(id = "$lastId", firstName = firstName, lastName =  lastName)
         }
     }
-     abstract class Builder {
+     class Builder {
          private var id : String? = null
          private var lastId : Int = -1
          var firstName : String? = null
