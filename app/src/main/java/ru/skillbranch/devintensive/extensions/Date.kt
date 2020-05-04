@@ -1,5 +1,6 @@
 package ru.skillbranch.devintensive.extensions
 
+import android.util.Log
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -24,9 +25,16 @@ fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND) : Date{
     return this
 }
 fun Date.humanizeDiff(date: Date = Date()): String{
-
+    println(date.time - this.time)
     return when(val  period = date.time - this.time){
-        in 0..1* SECOND -> "только что"
+        in -360* DAY.. -26* HOUR -> "через ${TimeUnits.DAY.plural(((-period/ DAY)+1).toInt())}"
+        in -22* HOUR downTo -26* HOUR -> "через день"
+        in -75* MINUTE downTo -22* HOUR -> "через ${TimeUnits.HOUR.plural(((-period/ HOUR)+1).toInt())}"
+        in -45* MINUTE downTo -75* MINUTE ->  "через час"
+        in -75* SECOND downTo -45* MINUTE -> "через ${TimeUnits.MINUTE.plural(((-period/ MINUTE)+1).toInt())}"
+        in -45*SECOND downTo -75*SECOND -> "через минуту"
+        in -1*SECOND downTo -45*SECOND -> "через несколько секунд"
+        in -1* SECOND..1* SECOND -> "только что"
         in 1*SECOND..45*SECOND -> "несколько секунд назад"
         in 45*SECOND..75*SECOND -> "минуту назад"
         in 75* SECOND..45* MINUTE -> "${TimeUnits.MINUTE.plural((period/ MINUTE).toInt())} назад"
@@ -34,7 +42,8 @@ fun Date.humanizeDiff(date: Date = Date()): String{
         in 75* MINUTE..22* HOUR -> "${TimeUnits.HOUR.plural((period/ HOUR).toInt())} назад"
         in 22* HOUR..26* HOUR -> "день назад"
         in 26* HOUR..360* DAY -> "${TimeUnits.DAY.plural((period/ DAY).toInt())} назад"
-        else -> "более года назад"
+        else -> if(period<-360* HOUR) "более чем через год"
+            else "более года назад"
     }
 }
 enum class TimeUnits{
