@@ -36,7 +36,6 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:lines="1"
-            android:inputType="text"
             android:textColor="@color/color_gray_light"
             android:textColorHint="@color/color_gray_light"
             android:hint="Введите текст"
