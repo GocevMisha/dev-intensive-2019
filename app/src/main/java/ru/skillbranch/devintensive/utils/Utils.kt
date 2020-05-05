@@ -1,6 +1,5 @@
 package ru.skillbranch.devintensive.utils
 
-import android.icu.text.Transliterator
 
 object Utils {
     fun parseFullName(fullName:String?) :Pair<String?, String?>{
