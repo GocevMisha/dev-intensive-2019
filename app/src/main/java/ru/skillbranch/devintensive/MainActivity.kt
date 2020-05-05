@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, TextView.OnEdito
         setContentView(R.layout.activity_main)
         benderImg = iv_bender
         textTxt = tv_text
-        messageEt = ed_message
+        messageEt = et_message
         sendBtn = iv_send
 
 
@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, TextView.OnEdito
     }
 
     override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-        if(v?.id == R.id.ed_message && actionId == EditorInfo.IME_ACTION_DONE){
+        if(v?.id == R.id.et_message && actionId == EditorInfo.IME_ACTION_DONE){
             onClick(sendBtn)
             return true
         }
