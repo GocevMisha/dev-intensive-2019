@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, TextView.OnEdito
         sendBtn = iv_send
 
 
-        Log.d("M_MainActivity", isKeyboardOpen().toString())
         val status = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
 
         val question = savedInstanceState?.getString("QUESTION") ?: Bender.Question.NAME.name
@@ -50,7 +49,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, TextView.OnEdito
         benderImg.setColorFilter(Color.rgb(r,g,b), PorterDuff.Mode.MULTIPLY)
 
 
-        textTxt.text = benderObj.question.question
+        textTxt.text = benderObj.askQuestion()
         sendBtn.setOnClickListener(this)
 
         messageEt.imeOptions = EditorInfo.IME_ACTION_DONE
