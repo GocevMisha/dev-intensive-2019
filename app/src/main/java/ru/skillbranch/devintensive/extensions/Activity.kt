@@ -8,7 +8,7 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.activity_profile.view.*
 import ru.skillbranch.devintensive.R
 
 fun Activity.hideKeyboard() {
