@@ -1,25 +1,29 @@
 package ru.skillbranch.devintensive.ui.custom
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import android.widget.ImageView
 import ru.skillbranch.devintensive.R
 
-class AspectRatioRatioImageView @JvmOverloads constructor(
+class CircleImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : androidx.appcompat.widget.AppCompatImageView(context, attrs, defStyleAttr){
+) : androidx.appcompat.widget.AppCompatImageView(context, attrs, defStyleAttr) {
     companion object {
-        private const val DEFAULT_ASPECT_RATIO = 1.78f
+        private const val DEFAULT_BORDER_COLOR = Color.WHITE
+        private const val DEFAULT_BORDER_WIDTH = 1.79f
     }
-
-    private var aspectRatio = DEFAULT_ASPECT_RATIO
+    private var aspectRatio = CircleImageView.DEFAULT_BORDER_WIDTH
 
     init {
         if(attrs!=null){
             val a = context.obtainStyledAttributes(attrs, R.styleable.AspectRatioImageView)
-            aspectRatio = a.getFloat(R.styleable.AspectRatioImageView_aspectRatio, DEFAULT_ASPECT_RATIO)
+            aspectRatio = a.getFloat(
+                R.styleable.AspectRatioImageView_aspectRatio,
+                CircleImageView.DEFAULT_BORDER_WIDTH
+            )
             a.recycle()
         }
     }
@@ -29,4 +33,4 @@ class AspectRatioRatioImageView @JvmOverloads constructor(
         val newHeight = (measuredWidth/aspectRatio).toInt()
         setMeasuredDimension(measuredWidth, newHeight)
     }
-    }
+}
